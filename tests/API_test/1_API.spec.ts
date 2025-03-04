@@ -67,7 +67,7 @@ test('create article', async({page, request}) => {
     await expect(page.locator('app-article-list h1').first()).toContainText("This is a test title2")
 
     const deleteArticleRequest = await request.delete(`https://conduit-api.bondaracademy.com/api/articles/${slugId}`)
-    expect(articleResponse.status()).toEqual(201) 
+    expect(deleteArticleRequest.status()).toEqual(204) 
     await page.getByText('Global Feed').click()
     await expect(page.locator('app-article-list h1').first()).not.toContainText("This is a test title2")
     
