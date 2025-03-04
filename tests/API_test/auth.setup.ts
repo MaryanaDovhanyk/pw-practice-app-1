@@ -7,14 +7,15 @@ const authFile = '.auth/user.json'
 setup('authentication', async({page, request}) => {
     //commenting UI authentication
 
-    //await page.goto('https://conduit.bondaracademy.com/')
-    // await page.getByText('Sign in').click()
-    // await page.getByRole('textbox', {name: 'Email'}).fill('asde7898@gmail.com')
-    // await page.getByRole('textbox', {name: 'Password'}).fill('Welcome1')
-    // await page.getByRole('button').click() 
-    // await page.waitForResponse('https://conduit-api.bondaracademy.com/api/tags')
+    await page.goto('https://conduit.bondaracademy.com/')
+    await page.getByText('Sign in').click()
+    await page.getByRole('textbox', {name: 'Email'}).fill('asde7898@gmail.com')
+    await page.getByRole('textbox', {name: 'Password'}).fill('Welcome1')
+    await page.getByRole('button').click() 
+    await page.waitForTimeout(1000)
+    await page.waitForResponse('https://conduit-api.bondaracademy.com/api/tags')
 
-    // await page.context().storageState({path: authFile})
+    await page.context().storageState({path: authFile})
 
     const response = await request.post('https://conduit-api.bondaracademy.com/api/users/login', {
         data: {
